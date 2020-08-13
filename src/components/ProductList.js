@@ -1,5 +1,6 @@
 import React from "react";
 import ProductItem from "./ProductItem";
+import { connect } from "react-redux";
 
 const ProductList = ({ products, addToCart }) => {
   console.log("ProductList");
@@ -17,4 +18,9 @@ const ProductList = ({ products, addToCart }) => {
   );
 };
 
-export default ProductList;
+export default connect(
+  (state) => ({
+    products: state.product.products,
+  }),
+  { addToCart }
+)(ProductList);

@@ -1,5 +1,6 @@
 import React from "react";
 import CartItem from "./CartItem";
+import { connect } from "react-redux";
 
 const Cart = ({
   products,
@@ -39,4 +40,15 @@ const Cart = ({
   );
 };
 
-export default Cart;
+export default connect(
+  (state) => ({
+    products: state.cart.products,
+    total: state.cart.total,
+    error: state.cart.error,
+    checkoutPending: state.cart.checkoutPending,
+  }),
+  {
+    removeFromCart,
+    checkout,
+  }
+)(Cart);
